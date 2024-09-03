@@ -22,4 +22,11 @@ public with sharing class EventSummaryController {
         //Use SUM() to calculate total expenses
         return expenseByCategory;
     }
+    public Event_Expense__c getMostExpensiveExpense(Id eventPlanId){
+        Event_Expense__c mostExpensiveExpense;
+        //Write SOQL query here
+        //Use ORDER BY to sort expenses by Amount__c in descending order
+        //Use LIMIT to retrieve only one record
+        return mostExpensiveExpense;
+    }
 }
