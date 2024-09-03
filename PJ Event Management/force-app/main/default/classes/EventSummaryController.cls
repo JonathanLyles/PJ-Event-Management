@@ -8,4 +8,11 @@ public with sharing class EventSummaryController {
         //Use COUNT() to calculate task counts
         return taskStatusSummary;
     }
+    public List<Event_Task__c> getOpenTasks(Id eventPlanId){
+        List<Event_Task__c> openTasks = new List<Event_Task__c>();
+        //Write SOQL query here
+        //add WHERE clause to filter tasks by status "Not Started"
+        //Use ORDER BY to sort tasks by Due_Date__c in descending order
+        return openTasks;
+    }
 }
