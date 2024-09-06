@@ -4,10 +4,13 @@ public with sharing class EventSummaryController {
     public static Map<String, Integer> getTaskStatusSummary(Id eventPlanId){
         Map<String, Integer> taskStatusSummary = new Map<String, Integer>();
         //Write SOQL query and aggregate function here
-        List<AggregateResult> myResults = [SELECT Task_Status__c, COUNT(Id) FROM Event_Task__c GROUP BY Task_Status__c];
+        //List<Event_Task__c> myEventTasks = [SELECT Event_Plan__c, Task_Status__c FROM Event_Task__c];
+        //System.debug(myEventTasks);
+        List<AggregateResult> myResults = [SELECT Task_Status__c, COUNT(Id) totalCount FROM Event_Task__c WHERE Event_Plan__c = :eventPlanId GROUP BY Task_Status__c];
+        System.debug(myResults);
         for(AggregateResult myResult : myResults){
             String mapKey = (String) myResult.get('Task_Status__c');
-            Integer mapValue = (Integer) myResult.get('expr0');
+            Integer mapValue = (Integer) myResult.get('totalCount');
             taskStatusSummary.put(mapKey, mapValue);
 
         }
