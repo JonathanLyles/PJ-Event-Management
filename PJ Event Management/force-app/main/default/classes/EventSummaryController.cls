@@ -27,11 +27,17 @@ public with sharing class EventSummaryController {
         //Use ORDER BY to sort tasks by Due_Date__c in descending order
         return openTasks;
     }
-    public Map<String, Decimal> getExpensesByCategory(Id eventPlanId){
+    public static Map<String, Decimal> getExpensesByCategory(Id eventPlanId){
         Map<String, Decimal> expenseByCategory = new Map<String, Decimal>();
         //Write SOQL query and aggregate function here
+        List<AggregateResult> myResults = [SELECT Category__c, SUM(Amount__c) totalAmount FROM Event_Expense__c WHERE Associated_Event__c = :eventPlanId GROUP BY Category__c];
         //Use GROUP BY to group results by Category__c
         //Use SUM() to calculate total expenses
+        for(AggregateResult myResult : myResults){
+            String mapKey = (String) myResult.get('Category__c');
+            Decimal mapValue = (Decimal) myResult.get('totalAmount');
+            expenseByCategory.put(mapKey, mapValue);
+        }
         return expenseByCategory;
     }
     public Event_Expense__c getMostExpensiveExpense(Id eventPlanId){
