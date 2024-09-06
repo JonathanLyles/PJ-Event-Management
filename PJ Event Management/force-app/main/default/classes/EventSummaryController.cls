@@ -40,8 +40,9 @@ public with sharing class EventSummaryController {
         }
         return expenseByCategory;
     }
-    public Event_Expense__c getMostExpensiveExpense(Id eventPlanId){
+    public static Event_Expense__c getMostExpensiveExpense(Id eventPlanId){
         Event_Expense__c mostExpensiveExpense;
+        mostExpensiveExpense = [SELECT Name, Amount__c FROM Event_Expense__c WHERE Associated_Event__c = :eventPlanId ORDER BY Amount__c DESC LIMIT 1];
         //Write SOQL query here
         //Use ORDER BY to sort expenses by Amount__c in descending order
         //Use LIMIT to retrieve only one record
