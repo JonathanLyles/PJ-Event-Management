@@ -24,6 +24,6 @@ private class EventSummaryControllerTest {
 
     @isTest
     static void getTaskStatusSummary() {
-        // TO DO: implement unit test
+        
     }
 }
