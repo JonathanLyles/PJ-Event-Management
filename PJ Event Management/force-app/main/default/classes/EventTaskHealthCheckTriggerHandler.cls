@@ -58,7 +58,6 @@ public with sharing class EventTaskHealthCheckTriggerHandler {
                 if(status == 'Completed'){
                     totalCompleted = total;
                 }           
-               // System.debug('Task Status: ' + status + ', Total: ' + total);
             }
             percentCompleted = totalCompleted / totalTasks;
             if(percentCompleted == 1.0){
@@ -70,6 +69,5 @@ public with sharing class EventTaskHealthCheckTriggerHandler {
             }            
             upsert theEvent;     
         }  
-    }  
-    // Other methods if needed
+    }    
 }
