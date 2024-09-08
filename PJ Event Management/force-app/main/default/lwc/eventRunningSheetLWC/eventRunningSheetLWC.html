@@ -1,3 +1,25 @@
 <template>
-    
+    <lightning-card title="Event Running Sheet">
+
+        <div class="event-details">
+            <p><strong>Event Name:</strong> {eventName}</p>
+            <p><strong>Event Date:</strong> {eventDate}</p>
+            <!-- Display other event details here -->
+        </div>
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3" 
+                     for:each={task_list_name} for:item="task" key={task.Id}>
+                     <div class="slds-box">
+                        <lightning-tile label={task.Task_Name__c}>
+                            <p>task_Name</p>
+                            <p>task_Due_Date__c</p>
+                            <p>task_Assigned_To__c}</p>
+                            <!-- Add more details you want to display in the tile -->
+                        </lightning-tile>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
 </template>
